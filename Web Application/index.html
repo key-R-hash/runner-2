@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<title>Olympic Race - Brazil 2015</title>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+</head>
+<body>
+		<div id="start">
+		</div>	
+		<script>
+			if(localStorage.getItem('runwayRightPosition') == null){
+				$('#start').append('<div class="box"><h3>Welcome!</h3><p>Welcome to the Olympic Race!, In  this game you will visit many beautiful places from Brazil!</p><p>You must use the keys <strong>"UP"</strong> and <strong>"DOWN"</strong> to change the runway</p><p>You must use the <strong>"SPACE"</strong> button to jump</p><p>Your goal is to reach the end of the ride, dodging all the obstacles (jumping or changing the runway)</p><form style="margin-bottom:50px" action="#" method="post" ><button type="submit" class="btn btn-start" id="startButton" onclick="start(1); return false;">START LEVEL 1</button><button type="submit" class="btn btn-start" id="startButton" onclick="start(2); return false;">START LEVEL 2</button><button type="submit" class="btn btn-start" id="startButton" onclick="start(3); return false;">START LEVEL 3</button></form></div>')
+			}else{
+				if(localStorage.getItem('canResume') == 1 ){
+					$('#start').append('<div class="box"><h3>Welcome!</h3><p>Welcome to the Olympic Race!, In  this game you will visit many beautiful places from Brazil!</p><p>You must use the keys <strong>"UP"</strong> and <strong>"DOWN"</strong> to change the runway</p><p>You must use the <strong>"SPACE"</strong> button to jump</p><p>Your goal is to reach the end of the ride, dodging all the obstacles (jumping or changing the runway)</p><form style="margin-bottom:50px" action="#" method="post" ><button type="submit" class="btn btn-start" id="startButton" onclick="start(); return false;">RESUME</button><button type="submit" class="btn btn-start" id="startButton" onclick="start(1); return false;">START LEVEL 1</button><button type="submit" class="btn btn-start" id="startButton" onclick="start(2); return false;">START LEVEL 2</button><button type="submit" class="btn btn-start" id="startButton" onclick="start(3); return false;">START LEVEL 3</button></form></div>')
+				}else{
+				localStorage.clear();
+				$('#start').append('<div class="box"><h3>Welcome!</h3><p>Welcome to the Olympic Race!, In  this game you will visit many beautiful places from Brazil!</p><p>You must use the keys <strong>"UP"</strong> and <strong>"DOWN"</strong> to change the runway</p><p>You must use the <strong>"SPACE"</strong> button to jump</p><p>Your goal is to reach the end of the ride, dodging all the obstacles (jumping or changing the runway)</p><form style="margin-bottom:50px" action="#" method="post" ><button type="submit" class="btn btn-start" id="startButton" onclick="start(1); return false;">START LEVEL 1</button><button type="submit" class="btn btn-start" id="startButton" onclick="start(2); return false;">START LEVEL 2</button><button type="submit" class="btn btn-start" id="startButton" onclick="start(3); return false;">START LEVEL 3</button></form></div>')
+
+				}
+			}
+		</script>
+
+	<!-- START -->
+<!-- END START -->
+
+	<!-- END -->
+	<div id="end" class="hide">
+		<div class="box">
+			<div class="error">
+				<h3>Game Over</h3>
+				<p>You didn't visited all the places... try again!</p>
+			</div>
+			<div class="success">
+				<h3>Welcome to the Rio 2016 – Olympic Games!</h3>
+				<p>You already visited beautifuls places from BRAZIL!</p>
+				<p>You can visit again pressing the Restart Button!</p>
+			</div>
+			<form action="index.html" method="post" >
+				<button type="submit" class='btn btn-start' id="restartButton" return false;">RESTART</button>
+			</form>
+		</div>
+	</div><!-- END END -->
+	<div id="win" class="hide">
+		<div class="box">
+			<div class="error">
+				<h3>Win!!</h3>
+				<p>try again!</p>
+			</div>
+			<div class="success">
+				<h3>Welcome to the Rio 2016 – Olympic Games!</h3>
+				<p>You already visited beautifuls places from BRAZIL!</p>
+				<p>You can visit again pressing the Restart Button!</p>
+			</div>
+			<form action="index.html" method="post" >
+				<button type="submit" class='btn btn-start' id="restartButton" return false;">RESTART</button>
+			</form>
+		</div>
+	</div><!-- END END -->
+	<!-- <div id="over" class="hide">
+		<div id="win">
+			<img src="../Runner/ribbonmain.png">
+		</div>
+	</div> -->
+
+	<!--  GAME -->
+	<audio id="walkvoice">
+		<source src="walkvoice.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="jumpvoice">
+		<source src="jumpvoice.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="clappi">
+		<source src="clappi.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="ahhh">
+		<source src="ahhh.mp3" type="audio/mpeg">
+	</audio>
+	<section id="game">
+		<!-- POINTS -->
+		<div id="points">
+			
+			<!-- INIT -->
+			<section id="init" class="">
+				<img src="imgs/sky.svg" alt="sky" />
+			</section><!-- END INIT -->
+
+			
+			<!-- AMAZON -->
+			<section id="amazon" class="visib">
+				<img src="imgs/amazon.svg" alt="amazon" />
+			</section><!-- END AMAZON -->
+
+			
+			<!-- BAHIA -->
+			<section id="bahia" class="visib">
+				<img src="imgs/bahia.svg" alt="bahia" />
+			</section><!-- END BAHIA -->
+
+			
+			<!-- PARANA -->
+			<section id="parana" class="visib">
+				<img src="imgs/parana.svg" alt="parana" />
+			</section><!-- END PARANA -->
+
+			
+			<!-- SAOPAULO -->
+			<section id="saopaulo" class="visib">
+				<img src="imgs/saopaulo.svg" alt="saopaulo" />
+			</section><!-- END SAOPAULO -->
+
+			
+			<!-- RIO -->
+			<section id="rio" class="visib">
+				<img src="imgs/rio.svg" alt="rio" />
+			</section><!-- END RIO -->
+
+		</div><!-- END POINTS -->
+
+		<!-- PYRE -->
+		<section id="pyre">
+			<img id="pyre_fire" src="imgs/pyre_fire.svg" class="hide"  alt="pyre" />
+			<img id="pyre_" src="imgs/pyre.svg" alt="pyre" />
+			<div class="panel">
+				Olympic Games – Rio 2016
+			</div>
+		</section><!-- END PYRE -->
+
+		<!-- PLAYGROUND -->
+		<div id="playground">
+			<!-- PANELS -->
+			<div id="panels">
+				<h4 id="amazonPanel" class="panel visib">Amazon Forest – Manaus – AM</h4>
+				<h4 id="bahiaPanel" class="panel visib">Lacerda Elevator – Salvador – BA</h4>
+				<h4 id="paranaPanel" class="panel visib">Iguaçu Falls  – Foz do Iguaçu – PR</h4>
+				<h4 id="saopauloPanel" class="panel visib">Cable Stayed Bridge – São Paulo – SP</h4>
+				<h4 id="rioPanel" class="panel visib">Christ the Redeemer – Rio de Janeiro – RJ</h4>
+			</div><!-- END PANELS -->
+
+			<!-- RUNNER -->
+			<div id="runner">
+				<img src="imgs/runner.svg" alt="runner">
+			</div><!-- END RUNNER -->
+
+			<!-- RUNWAYS -->
+			<div class="runways">
+
+			</div><!-- END RUNWAYS -->
+
+			<div id="riboo">
+
+			</div>
+
+		</div><!-- END PLAYGROUND -->
+
+	</section><!--  END GAME -->
+	
+	<!-- SCRIPTS -->
+	<script type="text/javascript" src='js/script.js'></script>
+
+</body>
+</html>
